@@ -1,4 +1,4 @@
-# wtms
+# Web Task Management System (WTMS)
 
 ## Project setup
 ```
