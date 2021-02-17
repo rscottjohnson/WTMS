@@ -31,3 +31,16 @@ div#app-container {
   padding: 2rem;
   overflow: auto;
 }
+
+footer#custom-footer {
+  height: 6rem;
+  background-color: #037BFF;
+  color: #FFFFFF;
+  font-size: 1rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
