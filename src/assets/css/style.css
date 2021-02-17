@@ -1,0 +1,54 @@
+.custom-bg-dark {
+  background-color: #037BFF !important;
+}
+
+nav.navbar {
+  height: 6rem;
+}
+
+a.navbar-brand {
+  padding-right: 3px;
+}
+
+@media screen and (max-width: 767px) {
+  div#navbarCollapse {
+    width: 100%;
+    position: fixed;
+    top: 75px;
+    left: 0;
+    padding-left: 20px;
+    padding-bottom: 5px;
+    background-color: #037BFF;
+  }
+}
+
+div#app-container {
+  position: fixed;
+  top: 96px;
+  left:0;
+  bottom: 96px;
+  width: 100%;
+  padding: 2rem;
+  overflow: auto;
+}
+
+footer#custom-footer {
+  height: 6rem;
+  background-color: #037BFF;
+  color: #FFFFFF;
+  font-size: 1rem;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+div#custom-home {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
