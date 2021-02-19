@@ -9,6 +9,8 @@ import Register from '../views/authentication/Register.vue'
 
 Vue.use(VueRouter)
 
+const isLoggedIn = false;
+
 const routes = [
   {
     path: '/',
@@ -18,27 +20,62 @@ const routes = [
   {
     path: '/tasks',
     name: 'tasks-all',
-    component: TasksAll
+    component: TasksAll,
+    beforeEnter: (toolbar, from, next) => {
+      if(isLoggedIn) {
+        next();
+      } else {
+        next('/login');
+      }
+    }
   },
   {
     path: '/tasks/new',
     name: 'tasks-create',
-    component: TasksCreate
+    component: TasksCreate,
+    beforeEnter: (toolbar, from, next) => {
+      if(isLoggedIn) {
+        next();
+      } else {
+        next('/login');
+      }
+    }
   },
   {
     path: '/tasks/:id',
     name: 'tasks-edit',
-    component: TasksEdit
+    component: TasksEdit,
+    beforeEnter: (toolbar, from, next) => {
+      if(isLoggedIn) {
+        next();
+      } else {
+        next('/login');
+      }
+    }
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
+    beforeEnter: (toolbar, from, next) => {
+      if(!isLoggedIn) {
+        next();
+      } else {
+        next('/');
+      }
+    }
   },
   {
     path: '/register',
     name: 'Register',
-    component: Register
+    component: Register,
+    beforeEnter: (toolbar, from, next) => {
+      if(!isLoggedIn) {
+        next();
+      } else {
+        next('/');
+      }
+    }
   },
   {
     path: '/about',
