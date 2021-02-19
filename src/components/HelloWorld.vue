@@ -6,11 +6,11 @@
     </p>
     <hr class="my-4" />
     <p>
-      Click below to begin using WTMS.
+      Click below to begin using WTMS and managing user tasks.
     </p>
-    <p class="lead">
-      <a class="btn btn-success btn-lg" href="#" role="button">View Tasks</a>
-    </p>
+    <router-link class="btn btn-success btn-lg" to="/tasks">
+      View Tasks
+    </router-link>
   </div>
 </template>
 
