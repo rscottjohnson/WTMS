@@ -1,9 +1,10 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+import bodyParser from 'body-parser';
 
 export function setEnvironment(app) {
-  if (process.env.NODE_ENV != 'production') {
+  if (process.env.NODE_ENV !== 'production') {
     setDevEnv(app);
   } else {
     setProdEnv(app);
@@ -11,11 +12,13 @@ export function setEnvironment(app) {
 }
 
 function setDevEnv(app) {
-  console.log("setting the development environment");
+  process.env.NODE_ENV = 'development';
+  app.use(bodyParser.json());
   app.use(morgan('dev')); // logs all requests to the api
   app.use(cors());
 }
 
 function setProdEnv(app) {
-  console.log("setting the production environment");
+  app.use(bodyParser.json());
+  app.use(express.static(__dirname + '/../dist')); // serves build folder as static content
 }
