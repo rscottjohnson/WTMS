@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 
 import { registerRoutes } from './routes';
-import { setEnvironment } from './api/config/env';
+import { setEnvironment } from './config/env';
 
 setEnvironment(app);
 registerRoutes(app);

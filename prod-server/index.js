@@ -6,7 +6,7 @@ var _express2 = _interopRequireDefault(_express);
 
 var _routes = require('./routes');
 
-var _env = require('./api/config/env');
+var _env = require('./config/env');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
