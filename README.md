@@ -15,6 +15,7 @@ WTMS is a web based task management application that a team of developers could 
       - [Build Main UI](#build-main-ui)
         - [Incorporating Bootstrap](#incorporating-bootstrap)
         - [Adding `styles.css`](#adding-stylescss)
+        - [Running the Application](#running-the-application)
 
 ## Project Motivation
 WTMS is the project chosen for use as a means of applying the concepts learned in the East Carolina University (ECU) CSCI 6600 *Database Management System* course.
@@ -73,5 +74,14 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 Finding that **Safari is not able to see the bootstrap test items, whereas Chrome is**.
 ##### Adding `styles.css`
 Incorporated the self created `styles.css` by adding `@import './assets/css/style.css';` to `App.vue` (after referencing [this StackOverflow discussion](https://stackoverflow.com/questions/43784202/how-to-include-css-files-in-vue-2).
+##### Running the Application
+Start the server via:
+```
+npm run dev
+```
+Start the client via:
+```
+npm run serve
+```
 
 
