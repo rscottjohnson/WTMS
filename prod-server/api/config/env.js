@@ -24,7 +24,7 @@ var _bodyParser2 = _interopRequireDefault(_bodyParser);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function setEnvironment(app) {
-  if (process.env.NODE_ENV != 'production') {
+  if (process.env.NODE_ENV !== 'production') {
     setDevEnv(app);
   } else {
     setProdEnv(app);
@@ -32,7 +32,7 @@ function setEnvironment(app) {
 }
 
 function setDevEnv(app) {
-  console.log("setting the development environment");
+  process.env.NODE_ENV = 'development';
   app.use(_bodyParser2.default.json());
   app.use((0, _morgan2.default)('dev')); // logs all requests to the api
   app.use((0, _cors2.default)());
@@ -41,5 +41,4 @@ function setDevEnv(app) {
 function setProdEnv(app) {
   app.use(_bodyParser2.default.json());
   app.use(_express2.default.static(__dirname + '/../dist')); // serves build folder as static content
-  console.log("setting the production environment");
 }
