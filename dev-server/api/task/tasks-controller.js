@@ -37,12 +37,9 @@ export function create(req, res) {
       if (error) {
         return res.status(500).json();
       }
-      return res.status(201).json();
-    })
-
-  }); 
-  
-  return res.status(201).json();
+      return res.status(204).json();
+    });
+  });
 }
 
 export function update(req, res) {
