@@ -16,6 +16,7 @@ WTMS is a web based task management application that a team of developers could 
         - [Incorporating Bootstrap](#incorporating-bootstrap)
         - [Adding `styles.css`](#adding-stylescss)
         - [Running the Application](#running-the-application)
+        - [Running `mongod`](#running-mongod)
 
 ## Project Motivation
 WTMS is the project chosen for use as a means of applying the concepts learned in the East Carolina University (ECU) CSCI 6600 *Database Management System* course.
@@ -82,6 +83,11 @@ npm run dev
 Start the client via:
 ```
 npm run serve
+```
+##### Running `mongod`
+Followed the steps in *Tolumide's* answer on [this StackOverflow discussion](https://stackoverflow.com/questions/58283257/mongodb-cant-find-data-directory-after-upgrading-to-mac-os-10-15-catalina) to get around mongo's `data/db` error.  Running `mongod` by itself still doesn't work, but this could be an aliasing issue to look into later.  For now, `mongod` can be run as:
+```
+mongod --dbpath=/System/Volumes/Data/data/db
 ```
 
 
