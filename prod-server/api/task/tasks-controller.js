@@ -94,8 +94,31 @@ function update(req, res) {
 
 function remove(req, res) {
   // delete task
-
-  return res.status(204).json();
+  var id = 5; // fake id to save with the task
+  // find the task by the id, an error or the task will be returned
+  _taskModel2.default.findOne({ _id: req.params.id }, function (error, task) {
+    // if error is returned, return the error
+    if (error) {
+      return res.status(500).json();
+    }
+    // if task isn't found, return the error
+    if (!task) {
+      return res.status(404).json();
+    }
+    // compare the author id to the id of the user trying to remove the task
+    // if it's not a match, then return an error
+    if (task.author._id.toString() !== id) {
+      return res.status(403).json({ message: 'Not allowed to delete another user\'s task' });
+    }
+    // if a match, delete the task
+    _taskModel2.default.deleteOne({ _id: req.params.id }, function (error) {
+      // if error, return the error
+      if (error) {
+        return res.status(500).json();
+      }
+      return res.status(204).json();
+    });
+  });
 }
 
 function show(req, res) {
