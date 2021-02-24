@@ -1,11 +1,32 @@
 import { StringUtil } from '../../utilities/string-util';
+import User from '../../model/user-model';
 
 export function index(req, res) {
   const validation = validateIndex(req.body);
   if (!validation.isValid) {
     return res.status(400).json({ message: validation.message });
   }
-  return res.status(204).json();
+  // find the user by username (login)
+  User.findOne({ username: req.body.username.toLowerCase() }, 
+  (error, user) => {
+    // if error, return error
+    if (error) {
+      return res.status(500).json();
+    }
+
+    // if no user is returned, return error
+    if (!user) {
+      return res.status(401).json();
+    }
+
+    // set a constant for password comparison
+    const passwordsMatch = true;
+    // if the passwords do not match, return an error
+    if (!passwordsMatch) {
+      return res.status(401).json();
+    }
+    return res.status(200).json();
+  });
 }
 
 function validateIndex(body) {
