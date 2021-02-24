@@ -8,5 +8,6 @@ const taskSchema = new mongoose.Schema({
   completed: { type: Boolean, default: false },
   author: { type: mongoose.Schema.Types.ObjectId, ref: 'user' } // author will come from the user model
 });
+taskSchema.set('timestamps', true);
 
 export default mongoose.model('task', taskSchema);

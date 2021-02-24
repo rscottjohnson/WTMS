@@ -18,5 +18,6 @@ var taskSchema = new _mongoose2.default.Schema({
   completed: { type: Boolean, default: false },
   author: { type: _mongoose2.default.Schema.Types.ObjectId, ref: 'user' // author will come from the user model
   } });
+taskSchema.set('timestamps', true);
 
 exports.default = _mongoose2.default.model('task', taskSchema);
