@@ -24,8 +24,17 @@ var _moment2 = _interopRequireDefault(_moment);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function index(req, res) {
-  // find all tasks
-  return res.status(200).json();
+  // find (read) all tasks
+  // find all the tasks (empty curly braces), an error or the tasks will be returned
+  _taskModel2.default.find({}, function (error, tasks) {
+    // if error is returned
+    if (error) {
+      return res.status(500).json();
+    }
+    // return all the tasks
+    return res.status(200).json({ tasks: tasks });
+    // grab other properties from the user model
+  }).populate('author', 'username', 'user');
 }
 
 function create(req, res) {
@@ -33,7 +42,7 @@ function create(req, res) {
   var id = 10; // fake id to save with the user
   // find the user by the id, an error or the user will be returned
   _userModel2.default.findOne({ _id: id }, function (error, user) {
-    // if error is returned or user isn't found
+    // if error is returned or user isn't found, return the error
     if (error && !user) {
       return res.status(500).json();
     }
@@ -58,15 +67,52 @@ function create(req, res) {
 
 function update(req, res) {
   // update task
-  return res.status(204).json();
+  var id = 10; // fake id to save with the user
+  // find the task by the id, an error or the user will be returned
+  _userModel2.default.findOne({ _id: id }, function (error, user) {
+    // if error is returned or user isn't found, return the error
+    if (error) {
+      return res.status(500).json();
+    }
+    // if we don't have a user, return the error
+    if (!user) {
+      return res.status(404).json();
+    }
+
+    // constant for the task to be updated
+    var task = req.body.task;
+    // update the author and due date
+    task.author = user._id;
+    task.dueDate = (0, _moment2.default)(task.dueDate);
+    // pass in the id of the task, return error if error
+    _taskModel2.default.findByIdAndUpdate({ _id: task._id }, task, function (error) {
+      if (error) {
+        return res.status(500).json();
+      }
+      return res.status(204).json();
+    });
+  });
 }
 
 function remove(req, res) {
   // delete task
+
   return res.status(204).json();
 }
 
 function show(req, res) {
   // get task by id
-  return res.status(200).json();
+  // find the task by the id, an error or the task will be returned
+  _taskModel2.default.findOne({ _id: req.params.id }, function (error, task) {
+    // if error is returned, return the error
+    if (error) {
+      return res.status(500).json();
+    }
+    // or if the task isn't found, also return an error
+    if (!task) {
+      return res.status(404).json();
+    }
+    // otherwise, return the task
+    return res.status(200).json({ task: task });
+  });
 }
