@@ -20,9 +20,9 @@ export function index(req, res) {
     }
 
     // set a constant for password comparison
-    const passwordsEqual = User.passwordEqual(req.body.password, user.password);
+    const passwordsMatch = User.passwordMatches(req.body.password, user.password);
     // if the passwords do not match, return an error
-    if (!passwordsEqual) {
+    if (!passwordsMatch) {
       return res.status(401).json();
     }
     return res.status(200).json();
@@ -41,7 +41,7 @@ function validateIndex(body) {
   }
 
   return {
-    isValid: String.isEmpty(errors),
+    isValid: StringUtil.isEmpty(errors),
     message: errors
   }
 }

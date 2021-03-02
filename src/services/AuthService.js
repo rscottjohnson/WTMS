@@ -8,14 +8,14 @@ export function isLoggedIn() {
 
 export function login(user) {
   // endpoint url
-  return http().post("/auth", user)
+  return http().post('/auth', user)
       // take the response, if there is one, set the token
-      .then((res) => {
+      .then(res => {
         if (res) {
           const fakeToken = {
-            token: "my-token",
+            token: 'my-token'
           }
-          setToken(token);
+          setToken(fakeToken);
         }
       });
 }
@@ -31,4 +31,8 @@ export function getUsername() {
 
 export function getUserId() {
   return 1;
+}
+
+export function registerUser(user) {
+  return http().post('/register', user);
 }

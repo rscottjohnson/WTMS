@@ -31,9 +31,9 @@ function index(req, res) {
     }
 
     // set a constant for password comparison
-    var passwordsEqual = _userModel2.default.passwordEqual(req.body.password, user.password);
+    var passwordsMatch = _userModel2.default.passwordMatches(req.body.password, user.password);
     // if the passwords do not match, return an error
-    if (!passwordsEqual) {
+    if (!passwordsMatch) {
       return res.status(401).json();
     }
     return res.status(200).json();
@@ -52,7 +52,7 @@ function validateIndex(body) {
   }
 
   return {
-    isValid: String.isEmpty(errors),
+    isValid: _stringUtil.StringUtil.isEmpty(errors),
     message: errors
   };
 }

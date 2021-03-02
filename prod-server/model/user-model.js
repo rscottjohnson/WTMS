@@ -31,7 +31,7 @@ userSchema.virtual('fullName').get(function () {
 });
 // Set static methods to use in userSchema
 // Check for password equivalent to what user provided
-userSchema.statics.passwordEqual = function (password, hash) {
+userSchema.statics.passwordMatches = function (password, hash) {
   return _bcryptNodejs2.default.compareSync(password, hash);
 };
 // pre-save method runs before saving a user to the database
