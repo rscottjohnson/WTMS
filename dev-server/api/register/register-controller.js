@@ -9,8 +9,8 @@ export function index(req, res) {
   const user = new User({
     username: req.body.username,
     password: req.body.password,
-    firstname: req.body.first,
-    lastname: req.body.last
+    firstname: req.body.firstname,
+    lastname: req.body.lastname
 
   });
   user.save(error => {

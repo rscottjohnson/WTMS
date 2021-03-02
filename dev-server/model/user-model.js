@@ -1,12 +1,13 @@
 import mongoose from 'mongoose';
 import { StringUtil } from '../utilities/string-util';
+import bcrypt from 'bcrypt-nodejs';
 
 // Define the user schema
 const userSchema = new mongoose.Schema({
   username: String,
   firstname: String,
   lastname: String,
-  password: String,
+  password: String
 });
 userSchema.set('timestamps', true);
 userSchema.virtual('fullName').get(function() {
@@ -20,6 +21,9 @@ userSchema.pre('save', function(next) {
   this.username = this.username.toLowerCase();
   this.firstname = this.firstname.toLowerCase();
   this.lastname = this.lastname.toLowerCase();
+  // accept a password and then encrypt it using bcrypt
+  const unencryptedPassword = this.password;
+  this.password=bcrypt.hashSync(unencryptedPassword);
   next(); // continue saving the user
 })
 

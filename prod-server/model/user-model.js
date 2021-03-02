@@ -10,6 +10,10 @@ var _mongoose2 = _interopRequireDefault(_mongoose);
 
 var _stringUtil = require('../utilities/string-util');
 
+var _bcryptNodejs = require('bcrypt-nodejs');
+
+var _bcryptNodejs2 = _interopRequireDefault(_bcryptNodejs);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Define the user schema
@@ -31,6 +35,9 @@ userSchema.pre('save', function (next) {
   this.username = this.username.toLowerCase();
   this.firstname = this.firstname.toLowerCase();
   this.lastname = this.lastname.toLowerCase();
+  // accept a password and then encrypt it using bcrypt
+  var unencryptedPassword = this.password;
+  this.password = _bcryptNodejs2.default.hashSync(unencryptedPassword);
   next(); // continue saving the user
 });
 

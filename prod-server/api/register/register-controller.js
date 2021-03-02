@@ -19,8 +19,11 @@ function index(req, res) {
     return res.status(400).json({ message: validation.message });
   }
   var user = new _userModel2.default({
-    username: req.body.username.toLowerCase(),
-    password: req.body.password
+    username: req.body.username,
+    password: req.body.password,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname
+
   });
   user.save(function (error) {
     if (error) {
@@ -41,6 +44,12 @@ function validateIndex(body) {
   }
   if (_stringUtil.StringUtil.isEmpty(body.password)) {
     errors += 'Password is required. ';
+  }
+  if (_stringUtil.StringUtil.isEmpty(body.firstname)) {
+    errors += 'First name is required. ';
+  }
+  if (_stringUtil.StringUtil.isEmpty(body.lastname)) {
+    errors += 'Last name is required. ';
   }
 
   return {
