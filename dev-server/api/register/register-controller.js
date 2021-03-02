@@ -7,8 +7,11 @@ export function index(req, res) {
     return res.status(400).json({ message: validation.message });
   }
   const user = new User({
-    username: req.body.username.toLowerCase(),
-    password: req.body.password
+    username: req.body.username,
+    password: req.body.password,
+    firstname: req.body.first,
+    lastname: req.body.last
+
   });
   user.save(error => {
     if (error) {
@@ -29,6 +32,12 @@ function validateIndex(body) {
   }
   if (StringUtil.isEmpty(body.password)) {
     errors += 'Password is required. ';
+  }
+  if (StringUtil.isEmpty(body.firstname)) {
+    errors += 'First name is required. ';
+  }
+  if (StringUtil.isEmpty(body.lastname)) {
+    errors += 'Last name is required. ';
   }
 
   return {
