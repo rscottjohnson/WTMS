@@ -4,10 +4,8 @@ WTMS is a web based task management application that a team of developers could 
 - [Web Task Management System (WTMS)](#web-task-management-system-wtms)
   - [Project Motivation](#project-motivation)
   - [Project setup](#project-setup)
-    - [Compiles and hot-reloads for development](#compiles-and-hot-reloads-for-development)
-    - [Compiles and minifies for production](#compiles-and-minifies-for-production)
-    - [Lints and fixes files](#lints-and-fixes-files)
-    - [Customize configuration](#customize-configuration)
+    - [Running the Application (for my local environment)](#running-the-application-for-my-local-environment)
+    - [Working with the MongoDB Database](#working-with-the-mongodb-database)
   - [Development Notes](#development-notes)
     - [Phase 1](#phase-1)
       - [MongoDB](#mongodb)
@@ -15,35 +13,42 @@ WTMS is a web based task management application that a team of developers could 
       - [Build Main UI](#build-main-ui)
         - [Incorporating Bootstrap](#incorporating-bootstrap)
         - [Adding `styles.css`](#adding-stylescss)
-        - [Running the Application](#running-the-application)
-        - [Running `mongod`](#running-mongod)
 
 ## Project Motivation
 WTMS is the project chosen for use as a means of applying the concepts learned in the East Carolina University (ECU) CSCI 6600 *Database Management System* course.
 
 ## Project setup
+### Running the Application (for my local environment)
+Start MongoDB:
+**Note:** Followed the steps in *Tolumide's* answer on [this StackOverflow discussion](https://stackoverflow.com/questions/58283257/mongodb-cant-find-data-directory-after-upgrading-to-mac-os-10-15-catalina) to get around mongo's `data/db` error.  Running `mongod` by itself still doesn't work, but this could be an aliasing issue to look into later.
 ```
-npm install
+mongod --dbpath=/System/Volumes/Data/data/db
 ```
-
-### Compiles and hot-reloads for development
+Start the server:
+```
+npm run dev
+```
+Start the client:
 ```
 npm run serve
 ```
-
-### Compiles and minifies for production
+### Working with the MongoDB Database
+To access the MongoDB database:
 ```
-npm run build
+sudo mongo
 ```
-
-### Lints and fixes files
+Show MongoDB databases:
 ```
-npm run lint
+show dbs
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
+Switch to the database:
+```
+use wtms-db
+```
+List the current database users:
+```
+db.users.find().pretty()
+```
 ## Development Notes
 ### Phase 1
 #### MongoDB
@@ -75,19 +80,5 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 Finding that **Safari is not able to see the bootstrap test items, whereas Chrome is**.
 ##### Adding `styles.css`
 Incorporated the self created `styles.css` by adding `@import './assets/css/style.css';` to `App.vue` (after referencing [this StackOverflow discussion](https://stackoverflow.com/questions/43784202/how-to-include-css-files-in-vue-2).
-##### Running the Application
-Start the server via:
-```
-npm run dev
-```
-Start the client via:
-```
-npm run serve
-```
-##### Running `mongod`
-Followed the steps in *Tolumide's* answer on [this StackOverflow discussion](https://stackoverflow.com/questions/58283257/mongodb-cant-find-data-directory-after-upgrading-to-mac-os-10-15-catalina) to get around mongo's `data/db` error.  Running `mongod` by itself still doesn't work, but this could be an aliasing issue to look into later.  For now, `mongod` can be run as:
-```
-mongod --dbpath=/System/Volumes/Data/data/db
-```
 
 
