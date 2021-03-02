@@ -31,9 +31,9 @@ function index(req, res) {
     }
 
     // set a constant for password comparison
-    var passwordsMatch = true;
+    var passwordsEqual = _userModel2.default.passwordEqual(req.body.password, user.password);
     // if the passwords do not match, return an error
-    if (!passwordsMatch) {
+    if (!passwordsEqual) {
       return res.status(401).json();
     }
     return res.status(200).json();

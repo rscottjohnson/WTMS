@@ -20,9 +20,9 @@ export function index(req, res) {
     }
 
     // set a constant for password comparison
-    const passwordsMatch = true;
+    const passwordsEqual = User.passwordEqual(req.body.password, user.password);
     // if the passwords do not match, return an error
-    if (!passwordsMatch) {
+    if (!passwordsEqual) {
       return res.status(401).json();
     }
     return res.status(200).json();
