@@ -21,6 +21,12 @@ var _moment = require('moment');
 
 var _moment2 = _interopRequireDefault(_moment);
 
+var _authService = require('../../services/auth-service');
+
+var auth = _interopRequireWildcard(_authService);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function index(req, res) {
@@ -39,7 +45,7 @@ function index(req, res) {
 
 function create(req, res) {
   // create task
-  var id = 10; // fake id to save with the user
+  var id = auth.getUserId(req);
   // find the user by the id, an error or the user will be returned
   _userModel2.default.findOne({ _id: id }, function (error, user) {
     // if error is returned or user isn't found, return the error
@@ -48,7 +54,7 @@ function create(req, res) {
     }
     // constant for task
     // pass in the task object from the request
-    var task = new _taskModel2.default()(req.body.task);
+    var task = new _taskModel2.default(req.body.task);
     // tie the task to the user
     task.author = user._id;
     // format the due date
@@ -65,7 +71,7 @@ function create(req, res) {
 
 function update(req, res) {
   // update task
-  var id = 10; // fake id to save with the user
+  var id = auth.getUserId(req);
   // find the task by the id, an error or the user will be returned
   _userModel2.default.findOne({ _id: id }, function (error, user) {
     // if error is returned or user isn't found, return the error
@@ -78,7 +84,7 @@ function update(req, res) {
     }
 
     // constant for the task to be updated
-    var task = req.body.task;
+    var task = new _taskModel2.default(req.body.task);
     // update the author and due date
     task.author = user._id;
     task.dueDate = (0, _moment2.default)(task.dueDate);
@@ -94,7 +100,7 @@ function update(req, res) {
 
 function remove(req, res) {
   // delete task
-  var id = 5; // fake id to save with the task
+  var id = auth.getUserId(req);
   // find the task by the id, an error or the task will be returned
   _taskModel2.default.findOne({ _id: req.params.id }, function (error, task) {
     // if error is returned, return the error

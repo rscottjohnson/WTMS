@@ -6,10 +6,9 @@ import TasksCreate from '../views/tasks/TasksCreate.vue'
 import TasksEdit from '../views/tasks/TasksEdit.vue'
 import Login from '../views/authentication/Login.vue'
 import Register from '../views/authentication/Register.vue'
+import * as auth from '../services/AuthService'
 
 Vue.use(VueRouter)
-
-const isLoggedIn = false;
 
 const routes = [
   {
@@ -22,7 +21,7 @@ const routes = [
     name: 'tasks-all',
     component: TasksAll,
     beforeEnter: (to, from, next) => {
-      if(isLoggedIn) {
+      if(auth.isLoggedIn()) {
         next();
       } else {
         next('/login');
@@ -34,7 +33,7 @@ const routes = [
     name: 'tasks-create',
     component: TasksCreate,
     beforeEnter: (to, from, next) => {
-      if(isLoggedIn) {
+      if(auth.isLoggedIn()) {
         next();
       } else {
         next('/login');
@@ -46,7 +45,7 @@ const routes = [
     name: 'tasks-edit',
     component: TasksEdit,
     beforeEnter: (to, from, next) => {
-      if(isLoggedIn) {
+      if(auth.isLoggedIn()) {
         next();
       } else {
         next('/login');
@@ -58,7 +57,7 @@ const routes = [
     name: 'Login',
     component: Login,
     beforeEnter: (to, from, next) => {
-      if(!isLoggedIn) {
+      if(!auth.isLoggedIn()) {
         next();
       } else {
         next('/');
@@ -70,7 +69,7 @@ const routes = [
     name: 'Register',
     component: Register,
     beforeEnter: (to, from, next) => {
-      if(!isLoggedIn) {
+      if(!auth.isLoggedIn()) {
         next();
       } else {
         next('/');
