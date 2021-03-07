@@ -1,6 +1,7 @@
 import User from '../../model/user-model';
 import Task from '../../model/task-model';
 import moment from 'moment';
+import * as auth from '../../services/auth-service';
 
 export function index(req, res) {
   // find (read) all tasks
@@ -18,7 +19,7 @@ export function index(req, res) {
 
 export function create(req, res) {
   // create task
-  const id = 10; // fake id to save with the user
+  const id = auth.getUserId(req);
   // find the user by the id, an error or the user will be returned
   User.findOne({ _id: id }, (error, user) => {
     // if error is returned or user isn't found, return the error
@@ -27,7 +28,7 @@ export function create(req, res) {
     }
     // constant for task
     // pass in the task object from the request
-    const task = new Task()(req.body.task);
+    const task = new Task(req.body.task);
     // tie the task to the user
     task.author = user._id;
     // format the due date
@@ -44,7 +45,7 @@ export function create(req, res) {
 
 export function update(req, res) {
   // update task
-  const id = 10; // fake id to save with the user
+  const id = auth.getUserId(req);
   // find the task by the id, an error or the user will be returned
   User.findOne({ _id: id }, (error, user) => {
     // if error is returned or user isn't found, return the error
@@ -57,7 +58,7 @@ export function update(req, res) {
     }
 
     // constant for the task to be updated
-    const task = req.body.task;
+    const task = new Task(req.body.task);
     // update the author and due date
     task.author = user._id;
     task.dueDate = moment(task.dueDate);
@@ -73,7 +74,7 @@ export function update(req, res) {
 
 export function remove(req, res) {
   // delete task
-  const id = 5; // fake id to save with the task
+  const id = auth.getUserId(req);
   // find the task by the id, an error or the task will be returned
   Task.findOne({ _id: req.params.id }, (error, task) => {
     // if error is returned, return the error
