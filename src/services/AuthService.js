@@ -12,10 +12,7 @@ export function login(user) {
       // take the response, if there is one, set the token
       .then(res => {
         if (res) {
-          const fakeToken = {
-            token: 'my-token'
-          }
-          setToken(fakeToken);
+          setToken(res.data.token);
         }
       });
 }
