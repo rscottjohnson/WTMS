@@ -34,6 +34,7 @@ function setEnvironment(app) {
 function setDevEnv(app) {
   process.env.NODE_ENV = 'development';
   process.env.DB_URL = 'mongodb://localhost:27017/wtms-db'; // set a url for the database connection
+  process.env.TOKEN_SECRET = 'w7m5-development-secret'; // sign each token with this secret
   app.use(_bodyParser2.default.json());
   app.use((0, _morgan2.default)('dev')); // logs all requests to the api
   app.use((0, _cors2.default)());
@@ -41,6 +42,7 @@ function setDevEnv(app) {
 
 function setProdEnv(app) {
   process.env.DB_URL = 'mongodb://localhost:27017/prod-db'; // set a url for the database connection
+  process.env.TOKEN_SECRET = 'w7m5-production-secret'; // sign each token with this secret
   app.use(_bodyParser2.default.json());
   app.use(_express2.default.static(__dirname + '/../dist')); // serves build folder as static content
 }
