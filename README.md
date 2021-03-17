@@ -80,5 +80,3 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 Finding that **Safari is not able to see the bootstrap test items, whereas Chrome is**.
 ##### Adding `styles.css`
 Incorporated the self created `styles.css` by adding `@import './assets/css/style.css';` to `App.vue` (after referencing [this StackOverflow discussion](https://stackoverflow.com/questions/43784202/how-to-include-css-files-in-vue-2).
-
-
