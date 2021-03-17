@@ -12,7 +12,7 @@ export function getTaskById(id) {
 
 // function for creating a task
 export function createTask(task) {
-  return http().post('/task'), task);
+  return http().post('/task', task);
 }
 
 // function for deleting a task
