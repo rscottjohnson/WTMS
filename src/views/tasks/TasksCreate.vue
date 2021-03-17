@@ -15,7 +15,7 @@
       </div>
       <div class="form-group">
         <label for="body">Body</label>
-        <textarea v-model="task.body" name="body" id="body" cols="30" rows="10"></textarea>
+        <textarea v-model="task.body" name="body" class="form-control" id="body" cols="30" rows="10" placeholder="Body"></textarea>
       </div>
       <div class="form-group">
         <label for="due-date">Due Date</label>
