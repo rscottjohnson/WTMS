@@ -93,6 +93,7 @@
 
 <script>
 import * as taskService from "../../services/TaskService";
+import moment from 'moment';
 
 export default {
   name: "tasks-all",
@@ -111,5 +112,12 @@ export default {
       });
     });
   },
+  methods: {
+    // takes in the date of the task
+    taskIsLate: function(date) {
+      // is date passed before the current date
+      return moment(date).isBefore();
+    }
+  }
 };
 </script>
