@@ -120,6 +120,17 @@ export default {
     },
     cancelModal: function() {
       this.$refs.modal.hide();
+      // clear the current task id
+      this.currentTaskId = null;
+    },
+    deleteTask: async function() {
+      this.$refs.modal.hide();
+      await taskService.deleteTask(this.currentTaskId);
+      // obtain the index of the task
+      const index = this.tasks.findIndex(task => task._id === this.currentTaskId);
+      // remove the task from the array
+      this.tasks.splice(index, 1);
+      // clear the task id
       this.currentTaskId = null;
     }
   }
