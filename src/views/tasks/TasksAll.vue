@@ -19,7 +19,7 @@
         <div class="card-body">
           <div class="d-flex justify-content-between">
             <h5 class="card-title">{{ task.title }}</h5>
-            <span v-bind:class="{ late: taskIsLate(task.dueDate) }" class="small">{{ task.dueDate }}</span>
+            <span v-bind:class="{ late: taskIsLate(task.dueDate) && !task.completed }" class="small">{{ task.dueDate | date }}</span>
           </div>
           <h6 class="card-subtitle mb-2 text-muted">
             Created by {{ task.author.username }}
