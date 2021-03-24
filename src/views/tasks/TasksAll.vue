@@ -53,7 +53,7 @@
               >Edit</router-link
             >
             <a
-              v-click.prevent="(currentTaskId = task._id)"
+              v-on:click.prevent="(currentTaskId = task._id)"
               class="card-link btn btn-danger"
               href="#"
               v-b-modal.modal1
