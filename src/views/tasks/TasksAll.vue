@@ -19,7 +19,7 @@
         <div class="card-body">
           <div class="d-flex justify-content-between">
             <h5 class="card-title">{{ task.title }}</h5>
-            <span v-bind:class="{ is-late: taskIsLate(task.dueDate)}" class="small">{{ task.dueDate }}</span>
+            <span v-bind:class="{ is-late: taskIsLate(task.dueDate) }" class="small">{{ task.dueDate }}</span>
           </div>
           <h6 class="card-subtitle mb-2 text-muted">
             Created by {{ task.author.username }}
@@ -117,6 +117,10 @@ export default {
     taskIsLate: function(date) {
       // is date passed before the current date
       return moment(date).isBefore();
+    },
+    cancelModal: function() {
+      this.$refs.modal.hide();
+      this.currentTaskId = null;
     }
   }
 };
