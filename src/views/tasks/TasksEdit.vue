@@ -37,6 +37,7 @@
 
 <script>
   import * as taskService from '../../services/TaskService'
+  import moment from 'moment'
 
   export default {
     name: 'tasks-edit',
@@ -48,6 +49,26 @@
           dueDate: ''
         }
       }
+    },
+    // need to grab the task that the user is trying to edit
+    beforeRouteEnter(to, from, next) {
+      taskService.getTaskById(to.params.id)
+      .then(response => {
+        if (!response) {
+          // redirect to tasks page if invalid
+          next('tasks');
+        } else {
+          next(vm => {
+            // save to a constant in order to format
+            const task = response.data.task;
+            // format with moment
+            task.dueDate = moment(task.dueDate)
+            .format('YYYY-MM-DD');
+            // assign task to vm
+            vm.task = task;
+          })
+        }
+      });
     },
     methods: {
       onSubmit: async function() {
