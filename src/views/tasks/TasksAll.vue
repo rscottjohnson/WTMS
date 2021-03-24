@@ -132,6 +132,15 @@ export default {
       this.tasks.splice(index, 1);
       // clear the task id
       this.currentTaskId = null;
+    },
+    markAsCompleted: function(task) {
+      // mark the task as completed before sending to the server
+      task.completed = true;
+      // create the request object and pass in a task
+      const request = {
+        task: task
+      }
+      taskService.updateTask(request);
     }
   }
 };
