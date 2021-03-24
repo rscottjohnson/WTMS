@@ -19,7 +19,7 @@
         <div class="card-body">
           <div class="d-flex justify-content-between">
             <h5 class="card-title">{{ task.title }}</h5>
-            <span v-bind:class="{ is-late: taskIsLate(task.dueDate) }" class="small">{{ task.dueDate }}</span>
+            <span v-bind:class="{ late: taskIsLate(task.dueDate) && !task.completed }" class="small">{{ task.dueDate | date }}</span>
           </div>
           <h6 class="card-subtitle mb-2 text-muted">
             Created by {{ task.author.username }}
@@ -53,7 +53,7 @@
               >Edit</router-link
             >
             <a
-              v-click.prevent="(currentTaskId = task._id)"
+              v-on:click.prevent="(currentTaskId = task._id)"
               class="card-link btn btn-danger"
               href="#"
               v-b-modal.modal1
@@ -132,6 +132,15 @@ export default {
       this.tasks.splice(index, 1);
       // clear the task id
       this.currentTaskId = null;
+    },
+    markAsCompleted: function(task) {
+      // mark the task as completed before sending to the server
+      task.completed = true;
+      // create the request object and pass in a task
+      const request = {
+        task: task
+      }
+      taskService.updateTask(request);
     }
   }
 };
