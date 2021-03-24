@@ -19,7 +19,7 @@
         <div class="card-body">
           <div class="d-flex justify-content-between">
             <h5 class="card-title">{{ task.title }}</h5>
-            <span>{{ task.dueDate }}</span>
+            <span v-bind:class="{ is-late: taskIsLate(task.dueDate) }" class="small">{{ task.dueDate }}</span>
           </div>
           <h6 class="card-subtitle mb-2 text-muted">
             Created by {{ task.author.username }}
@@ -62,12 +62,38 @@
           </div>
         </div>
       </div>
+      <div>
+        <b-modal id="modal1" ref="modal" centered title="Confirm Delete">
+        <p class="my-4">Are you sure?</p>
+        <div slot="modal-footer" class="w-100 text-right">
+          <b-button
+            slot="md"
+            class="mr-1"
+            variant="danger"
+            @click="deleteTask"
+            >Delete Task</b-button
+          >
+          <b-button
+            slot="md"
+            variant="secondary"
+            @click="cancelModal"
+            >Cancel</b-button
+          >
+        </div>
+      </b-modal>
+      </div>
+    </div>
+    <div v-if="tasks && tasks.length === 0" class="ml-2">
+      <div class="alert alert-info">
+        There are no tasks to display.
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import * as taskService from "../../services/TaskService";
+import moment from 'moment';
 
 export default {
   name: "tasks-all",
@@ -86,5 +112,27 @@ export default {
       });
     });
   },
+  methods: {
+    // takes in the date of the task
+    taskIsLate: function(date) {
+      // is date passed before the current date
+      return moment(date).isBefore();
+    },
+    cancelModal: function() {
+      this.$refs.modal.hide();
+      // clear the current task id
+      this.currentTaskId = null;
+    },
+    deleteTask: async function() {
+      this.$refs.modal.hide();
+      await taskService.deleteTask(this.currentTaskId);
+      // obtain the index of the task
+      const index = this.tasks.findIndex(task => task._id === this.currentTaskId);
+      // remove the task from the array
+      this.tasks.splice(index, 1);
+      // clear the task id
+      this.currentTaskId = null;
+    }
+  }
 };
 </script>
