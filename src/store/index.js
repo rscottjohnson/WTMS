@@ -8,7 +8,6 @@ export default new Vuex.Store({
   state: {
     isLoggedIn: false,
     apiUrl: `${window.location.protocol}//$${window.location.hostname}:3000/api`,
-    // apiUrl: 'http://localhost:3000/api',
     username: null,
     userId: null
   },
