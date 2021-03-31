@@ -41,9 +41,8 @@ function setDevEnv(app) {
 }
 
 function setProdEnv(app) {
-  process.env.DB_URL = 'mongodb+srv://rscottjohnson:zC0y4ubshvyI@wtms.kg7pz.mongodb.net/wtms?retryWrites=true&w=majority';
-  // process.env.DB_URL = 'mongodb://localhost:27017/prod-db'; // set a url for the database connection
+  process.env.DB_URL = 'mongodb://localhost:27017/prod-db'; // set a url for the database connection
   process.env.TOKEN_SECRET = 'w7m5-production-secret'; // sign each token with this secret
   app.use(_bodyParser2.default.json());
-  app.use(_express2.default.static(__dirname + '/../../dist')); // serves build folder as static content
+  app.use(_express2.default.static(__dirname + '/../dist')); // serves build folder as static content
 }
