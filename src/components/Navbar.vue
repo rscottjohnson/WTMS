@@ -62,7 +62,7 @@ export default {
   methods: {
     logout: function() {
       auth.logout();
-      this.$router.push({ name: 'home' });
+      this.$router.push({ name: 'Home' });
     }
   }
 }
