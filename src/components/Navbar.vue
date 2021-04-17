@@ -25,6 +25,11 @@
               Home
             </router-link>
           </li>
+          <li class="nav-item">
+            <router-link to="/about" class="nav-link">
+              About
+            </router-link>
+          </li>
           <li v-if="$store.state.isLoggedIn" class="nav-item">
             <router-link to="/tasks" class="nav-link">
               Tasks
