@@ -7,25 +7,6 @@
       >
     </div>
     <div v-if="tasks && tasks.length > 0" class="d-flex flex-wrap justify-content-start">
-      <!-- <div v-for="task in tasks" v-bind:key="task._id" class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">{{ task.title }}</h5>
-            <p class="card-text">{{ task.body }}</p>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Created by {{ task.author.username }}</li>
-          <li class="form-group form-check" v-if="task.author._id === $store.state.userId">
-            <input type="checkbox" class="form-check-input" :disabled="task.completed" v-model="task.completed" v-on:click="markAsCompleted(task)"/>
-            <label for="form-check-label">Completed</label></li>
-          <li v-bind:class="{ late: taskIsLate(task.dueDate) && !task.completed }" class="small">{{ task.dueDate | date }}</li>
-          <li></li>
-        </ul>
-        <div class="card-body" v-if="task.author._id === $store.state.userId">
-          <router-link class="card-link" :to="{ name: 'tasks-edit', params: { id: task._id } }" exact>Edit</router-link>
-          <a v-on:click.prevent="(currentTaskId = task._id)" class="card-link" href="#" v-b-modal.modal1>Delete</a>
-        </div>
-      </div> -->
-      <!-- Original -->
       <div v-for="task in tasks" v-bind:key="task._id" class="card mb-2 ml-2" style="width: 18rem;">
         <div class="card-body">
           <div class="d-flex justify-content-between">
