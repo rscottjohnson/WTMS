@@ -2,7 +2,7 @@
   <div class="jumbotron">
     <h1 class="display-4">Web Task Management System</h1>
     <p class="lead">
-      A web application that a team of developers can utilize to create, edit, track the completion of, and delete tasks as part of a workgroup.  WTMS utilizes MongoDB, ExpressJS, VueJS, and NodeJS.
+      Create and manage your team's tasks!
     </p>
     <hr class="my-4" />
     <p>
