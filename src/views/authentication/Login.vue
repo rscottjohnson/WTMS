@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h1>Login Route</h1>
     <form class="custom-form" v-on:submit.prevent="onSubmit">
+    <h1>WTMS User Login</h1>
+    <br>
       <div class="form-group">
         <label for="username">Username</label>
         <input
@@ -26,7 +27,7 @@
         <button type="submit" class="btn btn-secondary">Login</button>
       </div>
     </form>
-  </div>
+    </div>
 </template>
 
 <script>
