@@ -1,9 +1,19 @@
 .custom-bg-dark {
-  background-color: #2da745 !important;
+  background-color: #58D68D !important;
 }
 
 .jumbotron {
   background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url("../../../dist/img/glenn-carstens-peters-RLw-UC03Gwc-unsplash.jpeg");
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: 'Roboto', sans-serif;
+}
+
+.jumbotron-about {
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.6) 0%,rgba(255,255,255,0.9) 100%), url("../../../dist/img/ryan-quintal-Q5H8WRXCZyw-unsplash.jpeg");
   height: 100%;
   width: 100%;
   background-position: center;
@@ -29,7 +39,7 @@ a.navbar-brand {
     left: 0;
     padding-left: 20px;
     padding-bottom: 5px;
-    background-color: #2da745;
+    background-color: #58D68D;
   }
 }
 
@@ -45,7 +55,7 @@ div#app-container {
 
 footer#custom-footer {
   height: 6rem;
-  background-color: #2da745;
+  background-color: #58D68D;
   color: #FFFFFF;
   font-size: 1rem;
   position: fixed;
