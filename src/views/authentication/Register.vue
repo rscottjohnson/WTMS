@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h1>Register Route</h1>
     <form class="custom-form" v-on:submit.prevent="onSubmit">
+    <h1>WTMS User Registration</h1>
+    <br>
       <div class="form-group">
         <label for="firstname">First Name</label>
         <input

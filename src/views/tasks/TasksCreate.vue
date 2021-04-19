@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h1>Create Task</h1>
     <form class="custom-form" v-on:submit.prevent="onSubmit">
+    <h1>Create Task</h1>
+    <br>
       <div class="form-group">
         <label for="title">Title</label>
         <input
@@ -29,7 +30,7 @@
         />
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-secondary">Create Task</button>
+        <button type="submit" class="btn btn-success">Create Task</button>
       </div>
     </form>
   </div>

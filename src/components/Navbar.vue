@@ -4,8 +4,9 @@
       <router-link to="/" class="navbar-brand">
         <img
           style="max-height:25px; padding-right:6px;"
-          src="../assets/logo.png"
-        />Web Task Management System
+          src="../assets/clipboard.png"
+        />
+        WTMS
       </router-link>
       <button
         class="navbar-toggler"
