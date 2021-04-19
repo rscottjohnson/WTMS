@@ -67,25 +67,25 @@ db.users.find().pretty()
 ## Navigation and Use
 ### Registration and Login
 New users can register via the **Register** link.  Form inputs for first and last name, username, and password are presented.  Once registered, user is directed back to the homepage.
-![Registration](dist/img/userRegistration.png)
+![Registration](src/assets/img/userRegistration.png)
 <br>
 Existing users can login via the **Login** link.  Form inputs for username and password are presented.  Once registered, user is directed back to the homepage. 
-![Login](dist/img/userLogin.png)
+![Login](src/assets/img/userLogin.png)
 ### Tasks View
 Authenticated users can view tasks, and the **Create Task** button allows a user to create a new task by taking them to the create task form.
-![View Tasks](dist/img/tasksView.png)
+![View Tasks](src/assets/img/tasksView.png)
 ### Task Creation
 Form inputs for title, body, and due date are presented.  Selecting the **Create Task** button creates the new task in the database and shows it in the Tasks view page.
-![Create Task](dist/img/createTask.png)
+![Create Task](src/assets/img/createTask.png)
 ### Task Edit and Completion
 Form inputs for updating the title, body, and due date are presented.  Selecting the **Update Task** button updates the task in the database and on the Tasks view page.
-![Edit Task](dist/img/editTask.png)
+![Edit Task](src/assets/img/editTask.png)
 <br>
 The task’s **Completed** check box can be selected to indicate completion.  If the task is past due, the date will format to a red color indicating that it’s late.
-![View Tasks 4](dist/img/taskView4.png)
+![View Tasks 4](src/assets/img/taskView4.png)
 ### Task Deletion
 If a user selects a task’s **Delete** button a modal is displayed for confirmation.  Selecting the modal’s **Delete Task** button removes it from the database and the Tasks view page.
-![Delete Task](dist/img/deleteTask.png)
+![Delete Task](src/assets/img/deleteTask.png)
 
 ## Development Notes
 ### MongoDB
