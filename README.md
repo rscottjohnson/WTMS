@@ -91,6 +91,7 @@ Form inputs for updating the title, body, and due date are presented.  Selecting
 ![Edit Task](src/assets/img/editTask.png)
 
 <br>
+
 The task’s **Completed** check box can be selected to indicate completion.  If the task is past due, the date will format to a red color indicating that it’s late.
 
 ![View Tasks 4](src/assets/img/taskView4.png)
